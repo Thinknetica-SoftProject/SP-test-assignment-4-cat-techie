@@ -15,4 +15,10 @@
 #
 #
 ## Решение:
+require 'digest'
 
+input_str = gets.chomp
+num = 1
+num += 1 while String(Digest::MD5.hexdigest(input_str + String(num))).index('00000') != 0
+
+puts num

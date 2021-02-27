@@ -16,4 +16,18 @@
 #
 ## Решение:
 
+file_path = './data/4.txt'
 
+sum_paper = 0
+if File.exist?(file_path)
+  file = File.new(file_path, 'r:UTF-8')
+  gifts = file.read.split("\n")
+  gifts.each do |g|
+    params = g.split('x').map(&:to_i)
+    params = [params[0] * params[1], params[2] * params[1], params[0] * params[2]]
+    sum_paper += 2 * params.inject(0){ |result, elem| result + elem } + params.min
+  end
+  puts sum_paper
+else
+  puts 'File not found'
+end
